@@ -1,0 +1,13 @@
+interface:
+  display_name: "前端审查助手"
+  short_description: "快速体检或逐页逐组件审查前端，输出有证据的问题清单、修复方案与验收条件"
+  default_prompt: "使用 $review-frontend-production 快速体检这个前端项目，输出有证据的问题、修复顺序和未验证范围。"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,827 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "PRJ-001",
+    "name": "虚构便签：仅源码示例",
+    "target": "examples/source-only/project",
+    "mode": "audit_plan",
+    "review_depth": "full",
+    "access_mode": "source_only",
+    "baseline": {
+      "source_ref": "fixture-v1",
+      "runtime_ref": "not-run",
+      "observed_at": "2026-10-10T04:18:42+00:00"
+    },
+    "inventory_status": "reconciled",
+    "inventory_sources": [
+      {
+        "kind": "source",
+        "locator": "project/index.html",
+        "evidence_ids": [
+          "EV-001"
+        ]
+      }
+    ],
+    "scope": "单页静态源码；无浏览器验证",
+    "out_of_scope": [],
+    "production_profile": {
+      "audience": "示例读者",
+      "task": "便签输入与清空",
+      "runtime": "unknown"
+    },
+    "assumptions": []
+  },
+  "pages": [
+    {
+      "id": "PAGE-001",
+      "route": "/",
+      "title": "虚构便签",
+      "source_locator": "project/index.html",
+      "entry_conditions": [
+        "打开本地文件"
+      ],
+      "variants": [
+        "默认"
+      ],
+      "evidence_ids": [
+        "EV-001"
+      ],
+      "scope_status": "in_scope"
+    }
+  ],
+  "definitions": [
+    {
+      "id": "DEF-001",
+      "name": "表单区域",
+      "kind": "native HTML",
+      "source_locator": "project/index.html",
+      "source_status": "located"
+    },
+    {
+      "id": "DEF-002",
+      "name": "便签输入",
+      "kind": "native HTML",
+      "source_locator": "project/index.html",
+      "source_status": "located"
+    },
+    {
+      "id": "DEF-003",
+      "name": "清空按钮",
+      "kind": "native HTML",
+      "source_locator": "project/index.html",
+      "source_status": "located"
+    }
+  ],
+  "instances": [
+    {
+      "id": "CMP-001",
+      "page_id": "PAGE-001",
+      "definition_id": "DEF-001",
+      "label": "表单区域",
+      "locator": "project/index.html:5",
+      "variant": "default",
+      "criticality": "normal"
+    },
+    {
+      "id": "CMP-002",
+      "page_id": "PAGE-001",
+      "definition_id": "DEF-002",
+      "label": "便签输入",
+      "locator": "project/index.html:7",
+      "variant": "default",
+      "criticality": "normal"
+    },
+    {
+      "id": "CMP-003",
+      "page_id": "PAGE-001",
+      "definition_id": "DEF-003",
+      "label": "清空按钮",
+      "locator": "project/index.html:7",
+      "variant": "default",
+      "criticality": "normal"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "SCN-001",
+      "title": "输入并清空便签",
+      "page_ids": [
+        "PAGE-001"
+      ],
+      "instance_ids": [
+        "CMP-001",
+        "CMP-002",
+        "CMP-003"
+      ],
+      "preconditions": [
+        "浏览器打开页面"
+      ],
+      "steps": [
+        "输入便签",
+        "激活清空按钮"
+      ],
+      "expected": [
+        "输入内容清空且焦点合理"
+      ],
+      "context": {
+        "role": "本地访客",
+        "data": "虚构便签",
+        "network": "不适用：本地静态文件",
+        "viewport": "待验证：桌面与窄屏",
+        "input": "键盘和鼠标",
+        "lifecycle": "首次加载后输入"
+      },
+      "risk": "normal",
+      "status": "blocked",
+      "evidence_ids": [],
+      "finding_ids": [],
+      "reason": "本示例未执行浏览器，不能将静态脚本结果视为交互验证"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-001",
+      "kind": "source",
+      "locator": "project/index.html:5-9",
+      "observed_at": "2026-10-10T04:18:42+00:00",
+      "baseline_ref": "fixture-v1",
+      "summary": "已读取表单源码：存在 label、input 和明确 type 的 button；没有清空事件处理。"
+    },
+    {
+      "id": "EV-002",
+      "kind": "test",
+      "locator": "python3 -B examples/source-only/verify_fixture.py; evidence.txt",
+      "observed_at": "2026-10-10T04:18:42+00:00",
+      "baseline_ref": "fixture-v1",
+      "summary": "静态解析断言通过：标签关联、按钮 type 与 aria-label。未验证点击或浏览器可访问性。"
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHK-0001",
+      "scope": "project",
+      "target_id": "PRJ-001",
+      "dimension": "reproducibility",
+      "question": "在示例约定下验证 reproducibility",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0002",
+      "scope": "project",
+      "target_id": "PRJ-001",
+      "dimension": "architecture",
+      "question": "在示例约定下验证 architecture",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0003",
+      "scope": "project",
+      "target_id": "PRJ-001",
+      "dimension": "security_boundaries",
+      "question": "在示例约定下验证 security_boundaries",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0004",
+      "scope": "project",
+      "target_id": "PRJ-001",
+      "dimension": "delivery_observability",
+      "question": "在示例约定下验证 delivery_observability",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0005",
+      "scope": "page",
+      "target_id": "PAGE-001",
+      "dimension": "routing_history",
+      "question": "在示例约定下验证 routing_history",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0006",
+      "scope": "page",
+      "target_id": "PAGE-001",
+      "dimension": "state_coverage",
+      "question": "在示例约定下验证 state_coverage",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0007",
+      "scope": "page",
+      "target_id": "PAGE-001",
+      "dimension": "responsive_content",
+      "question": "在示例约定下验证 responsive_content",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0008",
+      "scope": "page",
+      "target_id": "PAGE-001",
+      "dimension": "journey_integration",
+      "question": "在示例约定下验证 journey_integration",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0009",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "behavior",
+      "question": "在示例约定下验证 behavior",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0010",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "states",
+      "question": "在示例约定下验证 states",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0011",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "semantics_accessibility",
+      "question": "在示例约定下验证 semantics_accessibility",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0012",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "layout_content",
+      "question": "在示例约定下验证 layout_content",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0013",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "data_effects",
+      "question": "在示例约定下验证 data_effects",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0014",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "security_privacy",
+      "question": "在示例约定下验证 security_privacy",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0015",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "performance_lifecycle",
+      "question": "在示例约定下验证 performance_lifecycle",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0016",
+      "scope": "component",
+      "target_id": "CMP-001",
+      "dimension": "maintainability_integration",
+      "question": "在示例约定下验证 maintainability_integration",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0017",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "behavior",
+      "question": "在示例约定下验证 behavior",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0018",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "states",
+      "question": "在示例约定下验证 states",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0019",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "semantics_accessibility",
+      "question": "在示例约定下验证 semantics_accessibility",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0020",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "layout_content",
+      "question": "在示例约定下验证 layout_content",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0021",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "data_effects",
+      "question": "在示例约定下验证 data_effects",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0022",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "security_privacy",
+      "question": "在示例约定下验证 security_privacy",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0023",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "performance_lifecycle",
+      "question": "在示例约定下验证 performance_lifecycle",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0024",
+      "scope": "component",
+      "target_id": "CMP-002",
+      "dimension": "maintainability_integration",
+      "question": "在示例约定下验证 maintainability_integration",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0025",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "behavior",
+      "question": "在示例约定下验证 behavior",
+      "status": "failed",
+      "evidence_ids": [
+        "EV-001"
+      ],
+      "scenario_ids": [],
+      "finding_ids": [
+        "FND-001"
+      ],
+      "reason": ""
+    },
+    {
+      "id": "CHK-0026",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "states",
+      "question": "在示例约定下验证 states",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0027",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "semantics_accessibility",
+      "question": "在示例约定下验证 semantics_accessibility",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0028",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "layout_content",
+      "question": "在示例约定下验证 layout_content",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0029",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "data_effects",
+      "question": "在示例约定下验证 data_effects",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0030",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "security_privacy",
+      "question": "在示例约定下验证 security_privacy",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0031",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "performance_lifecycle",
+      "question": "在示例约定下验证 performance_lifecycle",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    },
+    {
+      "id": "CHK-0032",
+      "scope": "component",
+      "target_id": "CMP-003",
+      "dimension": "maintainability_integration",
+      "question": "在示例约定下验证 maintainability_integration",
+      "status": "blocked",
+      "evidence_ids": [],
+      "scenario_ids": [],
+      "finding_ids": [],
+      "reason": "源码演示未执行此维度的完整验证"
+    }
+  ],
+  "findings": [
+    {
+      "id": "FND-001",
+      "title": "清空按钮缺少清空处理",
+      "category": "behavior",
+      "severity": "P2",
+      "confidence": "confirmed",
+      "status": "open",
+      "owner": "前端",
+      "page_ids": [
+        "PAGE-001"
+      ],
+      "instance_ids": [
+        "CMP-003"
+      ],
+      "definition_ids": [
+        "DEF-003"
+      ],
+      "check_ids": [
+        "CHK-0025"
+      ],
+      "scenario_ids": [],
+      "evidence_ids": [
+        "EV-001"
+      ],
+      "actual": "源码中 type=button 按钮无事件处理，也无其他脚本",
+      "expected": "名称为清空便签的控件应清除输入",
+      "impact": "清空操作未实现；实际浏览器影响未复现",
+      "root_cause": "缺少对应处理",
+      "root_cause_confidence": "confirmed",
+      "remediation": "绑定本地清空处理并验证焦点",
+      "regression_test": "执行 SCN-001",
+      "reproduction": {
+        "preconditions": [
+          "读取 fixture-v1"
+        ],
+        "steps": [
+          "检查完整 HTML，确认无脚本和按钮事件"
+        ]
+      },
+      "resolution_evidence_ids": []
+    }
+  ],
+  "component_blueprints": [
+    {
+      "id": "BP-001",
+      "definition_id": "DEF-001",
+      "current_contract": "表单区域，原生 HTML",
+      "change_locations": [
+        "project/index.html"
+      ],
+      "target_contract": {
+        "responsibility": "表单区域职责保持明确",
+        "interface": "保留 label/input/button 原生接口",
+        "states": "默认、输入后、清空后；运行待验证",
+        "data_effects": "仅本地输入，不新增请求",
+        "semantics_accessibility": "保留标签关联和按钮名称，键盘待验证",
+        "styling_layout": "保留简单流式布局，窄屏待验证",
+        "performance_lifecycle": "无计时器和订阅；运行性能待验证",
+        "security_privacy": "虚构本地数据，不引入外传",
+        "observability": "清空结果应可观察；无需新增埋点",
+        "integration": "清空按钮绑定同表单 note 输入"
+      }
+    },
+    {
+      "id": "BP-002",
+      "definition_id": "DEF-002",
+      "current_contract": "便签输入，原生 HTML",
+      "change_locations": [
+        "project/index.html"
+      ],
+      "target_contract": {
+        "responsibility": "便签输入职责保持明确",
+        "interface": "保留 label/input/button 原生接口",
+        "states": "默认、输入后、清空后；运行待验证",
+        "data_effects": "仅本地输入，不新增请求",
+        "semantics_accessibility": "保留标签关联和按钮名称，键盘待验证",
+        "styling_layout": "保留简单流式布局，窄屏待验证",
+        "performance_lifecycle": "无计时器和订阅；运行性能待验证",
+        "security_privacy": "虚构本地数据，不引入外传",
+        "observability": "清空结果应可观察；无需新增埋点",
+        "integration": "清空按钮绑定同表单 note 输入"
+      }
+    },
+    {
+      "id": "BP-003",
+      "definition_id": "DEF-003",
+      "current_contract": "清空按钮，原生 HTML",
+      "change_locations": [
+        "project/index.html"
+      ],
+      "target_contract": {
+        "responsibility": "清空按钮职责保持明确",
+        "interface": "保留 label/input/button 原生接口",
+        "states": "默认、输入后、清空后；运行待验证",
+        "data_effects": "仅本地输入，不新增请求",
+        "semantics_accessibility": "保留标签关联和按钮名称，键盘待验证",
+        "styling_layout": "保留简单流式布局，窄屏待验证",
+        "performance_lifecycle": "无计时器和订阅；运行性能待验证",
+        "security_privacy": "虚构本地数据，不引入外传",
+        "observability": "清空结果应可观察；无需新增埋点",
+        "integration": "清空按钮绑定同表单 note 输入"
+      }
+    }
+  ],
+  "component_plans": [
+    {
+      "instance_id": "CMP-001",
+      "blueprint_id": "BP-001",
+      "disposition": "investigate",
+      "rationale": "保留源码设计，补运行验证",
+      "instance_changes": [
+        "验证当前契约"
+      ],
+      "finding_ids": [],
+      "task_ids": [
+        "TASK-001"
+      ],
+      "acceptance_criteria": [
+        "输入后清空按钮清除当前值，焦点合理"
+      ],
+      "regression_scenario_ids": [
+        "SCN-001"
+      ]
+    },
+    {
+      "instance_id": "CMP-002",
+      "blueprint_id": "BP-002",
+      "disposition": "investigate",
+      "rationale": "保留源码设计，补运行验证",
+      "instance_changes": [
+        "验证当前契约"
+      ],
+      "finding_ids": [],
+      "task_ids": [
+        "TASK-001"
+      ],
+      "acceptance_criteria": [
+        "输入后清空按钮清除当前值，焦点合理"
+      ],
+      "regression_scenario_ids": [
+        "SCN-001"
+      ]
+    },
+    {
+      "instance_id": "CMP-003",
+      "blueprint_id": "BP-003",
+      "disposition": "refactor",
+      "rationale": "按钮缺少清空处理",
+      "instance_changes": [
+        "补事件并核对焦点"
+      ],
+      "finding_ids": [
+        "FND-001"
+      ],
+      "task_ids": [
+        "TASK-001"
+      ],
+      "acceptance_criteria": [
+        "输入后清空按钮清除当前值，焦点合理"
+      ],
+      "regression_scenario_ids": [
+        "SCN-001"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "实现清空并验证表单流程",
+      "phase": 1,
+      "owner": "前端",
+      "scope_ids": [
+        "PAGE-001",
+        "CMP-001",
+        "CMP-002",
+        "CMP-003"
+      ],
+      "finding_ids": [
+        "FND-001"
+      ],
+      "depends_on": [],
+      "change_locations": [
+        "project/index.html"
+      ],
+      "implementation_steps": [
+        "绑定清空事件",
+        "在浏览器验证输入、键盘激活与焦点"
+      ],
+      "acceptance_criteria": [
+        "SCN-001 通过"
+      ],
+      "verification_scenario_ids": [
+        "SCN-001"
+      ],
+      "rollback": "恢复原 HTML",
+      "risk": "低：仅虚构本地页面",
+      "status": "planned",
+      "evidence_ids": []
+    }
+  ],
+  "release_gates": [
+    {
+      "id": "GATE-001",
+      "name": "核心旅程、异常恢复及关键可访问性已验证",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    },
+    {
+      "id": "GATE-002",
+      "name": "身份、对象、租户与字段权限在受信任边界执行",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    },
+    {
+      "id": "GATE-003",
+      "name": "写操作的一致性、重试、取消与结果未知语义已验证",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    },
+    {
+      "id": "GATE-004",
+      "name": "生产构建、配置与依赖安装可复现",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    },
+    {
+      "id": "GATE-005",
+      "name": "目标环境下的性能、布局与长时间使用符合约定",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    },
+    {
+      "id": "GATE-006",
+      "name": "错误可诊断，监控与日志数据满足隐私约定",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    },
+    {
+      "id": "GATE-007",
+      "name": "发布、新旧版本兼容与恢复路径已验证",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    },
+    {
+      "id": "GATE-008",
+      "name": "审查范围、基线一致性及尚存风险已明确",
+      "required": true,
+      "status": "not_checked",
+      "evidence_ids": [],
+      "reason": ""
+    }
+  ],
+  "progress": {
+    "current_page": null,
+    "completed_batches": [],
+    "next_actions": [
+      "实现清空处理，执行浏览器场景；补齐其他 blocked 检查"
+    ],
+    "unresolved_access": [
+      "无浏览器实测证据"
+    ],
+    "last_updated": "2026-10-10T04:18:42+00:00"
+  }
+}
