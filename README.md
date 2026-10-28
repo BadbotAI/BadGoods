@@ -29,10 +29,36 @@
 
 版本：0.3.0-beta。辅助脚本的 17 项回归测试通过；不代表任何被审查产品已经通过上线验收。
 
+## 前端转 UE 助手
+
+你只需提供前端代码、HTML Demo 或可访问的应用地址，前端转 UE 助手就能梳理关键页面、布局规则和跳转关系，生成像 Figma 画布一样可缩放、可搜索的 HTML UE 地图，方便产品、研发和测试对齐。
+
+**[下载前端转 UE 助手 ZIP](downloads/frontend-to-ue.zip?raw=true)** · **[查看技能说明](skills/frontend-to-ue/SKILL.md)**
+
+- 按业务逻辑平铺关键页面和状态，点击页面查看“布局 / 入口 / 交互”。
+- 用标签、箭头和目标缩略图说明从哪里进入、点击什么、到哪里去。
+- 支持逐页导出关键页面 PNG，以及包含布局和交互标注的 UE 稿 PNG。
+- 默认生成 HTML；明确要求 Figma 时，按页面准备静态 HTML，再生成可编辑图层并校验 Auto Layout。
+- 公开展示时使用脱敏内容或独立的虚构示例；未经验证的规则会标明。
+
+### 怎么用
+
+下载并解压 ZIP，将整个技能目录交给支持本地 Skill 的 AI 工具。提供可运行的前端及必要资源，例如：
+
+> 使用 frontend-to-ue，把这个 HTML Demo 转成 UE 稿。默认生成可本地打开的 HTML 页面地图，说明每页布局、入口和跳转关系，并提供两类逐页 PNG 导出。
+
+Agent 需要能够读取文件、运行前端并操作浏览器；Figma 输出还需要可编辑 Figma 的工具。辅助脚本负责预检和渲染，原始前端的拆页与语义梳理由 Agent 完成。缺少运行或编辑能力时，会列出未完成范围。
+
+版本：4.1。HTML 地图与图片导出已通过本地示例验证；本版未完成 Figma 端到端复测，实际输出需逐页检查图层可编辑性及 Auto Layout。
+
 ## 文件说明
 
 - `skills/review-frontend-production/`：技能说明、审查参考、脚本、测试和虚构示例。
-- `downloads/review-frontend-production.zip`：可下载的技能包，解压后直接看到 SKILL.md。
+- `downloads/review-frontend-production.zip`：前端审查助手技能包。
+- `skills/frontend-to-ue/`：前端转 UE 的技能说明、地图模板、脚本和标注规范。
+- `downloads/frontend-to-ue.zip`：前端转 UE 助手技能包。
+
+两个 ZIP 的根目录均直接包含 `SKILL.md`。
 
 本仓库只分享技能及虚构示例，不包含其他业务项目源码或客户数据。
 
